@@ -12,19 +12,19 @@ function App() {
   const [icon, setIcon] = useState("");
   const [loaded, setLoaded] = useState("");
 
-let timing = document.querySelector(".time");
-let now = new Date();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-if (hours < 10) {
+  let timing = document.querySelector(".time");
+  let now = new Date();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  if (hours < 10) {
   hours = `0${hours}`;
-}
-if (minutes < 10) {
+  }
+  if (minutes < 10) {
   minutes = `0${minutes}`;
-}
-timing.innerHTML = ` ${hours}:${minutes} `;
+  }
+  timing.innerHTML = ` ${hours}:${minutes} `;
 
-let days = [
+  let days = [
   "SUNDAY",
   "MONDAY",
   "TUESDAY",
@@ -32,30 +32,28 @@ let days = [
   "THURSDAY",
   "FRIDAY",
   "SATURDAY"
-];
-let day = days[now.getDay()];
+  ];
+  let day = days[now.getDay()];
 
-let today = document.querySelector(".today");
-today.innerHTML = `${day}`;
+  let today = document.querySelector(".today");
+  today.innerHTML = `${day}`;
 
  let form = (
     <form onSubmit={handleQuery}>
+      <input type="search" placeholder="City..." onChange={updateCity}></input>
       <input type="search" className="form" placeholder="City..." onChange={updateCity}></input>
       <input type="submit" value="Search" className="btn btn-outline-secondary"></input>
       <input type="submit" value="Current" className="btn btn-outline-secondary"></input>
     </form>
   );
-
   function handleQuery(event) {
     event.preventDefault();
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6c8161756616103589832909859e4f86&units=metric`;
     axios.get(url).then(showWeather);
   }
-
    function updateCity(event) {
     setCity(event.target.value);
   }
-
   function showWeather(response) {
     setLoaded(true);
     setTemp(response.data.main.temp);
@@ -94,10 +92,9 @@ return (
           m/s</div><br />
       </div>
     </div>
-
     <div className="row align-items-start">
       <div className="col-2">
-         <img src={icon} alt={description} alt="weather" id="icon" />
+         <img src={icon} alt={description} id="icon" />
         </div>
       <div className="col-4">
         <h2><span className="units"><span className="actualTemp" id="celsius">{Math.round(temp)}</span><a href="https://www.shecodes.io" id="celsiusT"
@@ -111,6 +108,5 @@ return (
 </div>
   );
 }
-
 
 export default App;
