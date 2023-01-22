@@ -13,8 +13,8 @@ export default function Weather(props) {
     return(
     <Bars
   height="100"
-  width="120"
-  color="pink"
+  width="100"
+  color="violet"
   ariaLabel="bars-loading"
   wrapperStyle={{}}
   wrapperClass=""
