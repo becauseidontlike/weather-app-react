@@ -12,9 +12,35 @@ function App() {
   const [icon, setIcon] = useState("");
   const [loaded, setLoaded] = useState("");
 
+let timing = document.querySelector(".time");
+let now = new Date();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+timing.innerHTML = ` ${hours}:${minutes} `;
+
+let days = [
+  "SUNDAY",
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY"
+];
+let day = days[now.getDay()];
+
+let today = document.querySelector(".today");
+today.innerHTML = `${day}`;
+
  let form = (
     <form onSubmit={handleQuery}>
-      <input type="search" placeholder="City..." onChange={updateCity}></input>
+      <input type="search" className="form" placeholder="City..." onChange={updateCity}></input>
       <input type="submit" value="Search" className="btn btn-outline-secondary"></input>
       <input type="submit" value="Current" className="btn btn-outline-secondary"></input>
     </form>
