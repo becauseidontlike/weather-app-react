@@ -15,8 +15,8 @@ function App() {
  let form = (
     <form onSubmit={handleQuery}>
       <input type="search" placeholder="City..." onChange={updateCity}></input>
-      <input type="submit" value="Search"></input>
-      <input type="submit" value="Current"></input>
+      <input type="submit" value="Search" className="btn btn-outline-secondary"></input>
+      <input type="submit" value="Current" className="btn btn-outline-secondary"></input>
     </form>
   );
 
