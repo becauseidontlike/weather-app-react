@@ -12,10 +12,11 @@ function App() {
   const [icon, setIcon] = useState("");
   const [loaded, setLoaded] = useState("");
 
-  let form = (
+ let form = (
     <form onSubmit={handleQuery}>
       <input type="search" placeholder="City..." onChange={updateCity}></input>
       <input type="submit" value="Search"></input>
+      <input type="submit" value="Current"></input>
     </form>
   );
 
@@ -25,7 +26,7 @@ function App() {
     axios.get(url).then(showWeather);
   }
 
-  function updateCity(event) {
+   function updateCity(event) {
     setCity(event.target.value);
   }
 
@@ -35,18 +36,22 @@ function App() {
     setDescription(response.data.weather[0].description);
     setHumidity(response.data.main.humidity);
     setWind(response.data.wind.speed);
-    setIcon(`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-   );
+    setIcon(
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
   }
-  
 
-
- if (loaded) {
-  return (
+return (
 <div className="App">
     <div className="container">
-      <div>{form}</div>
-       
+       <div className="row align-items-start">
+          <div className="col-3">
+            <h1 className="myCity">{city}</h1>
+          </div>
+          <div className="col-9">
+             <div>{form}</div>
+           </div>
+        </div>
       <br />
     <div className="row align-items-start">
       <div className="col-8 bold">
@@ -66,9 +71,8 @@ function App() {
 
     <div className="row align-items-start">
       <div className="col-2">
-        <img src={icon} alt={description} />
-        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="weather" id="icon"></img>
-      </div>
+         <img src={icon} alt={description} alt="weather" id="icon" />
+        </div>
       <div className="col-4">
         <h2><span className="units"><span className="actualTemp" id="celsius">{Math.round(temp)}</span><a href="https://www.shecodes.io" id="celsiusT"
               className="active active2">℃</a> |
@@ -81,6 +85,6 @@ function App() {
 </div>
   );
 }
-}
+
 
 export default App;
