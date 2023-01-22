@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from "axios";
 import './App.css';
 import Footer from "./Footer";
-
 function App() {
   const [city, setCity] = useState("");
   const [temp, setTemp] = useState("");
@@ -12,19 +11,19 @@ function App() {
   const [icon, setIcon] = useState("");
   const [loaded, setLoaded] = useState("");
 
-  let timing = document.querySelector(".time");
-  let now = new Date();
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
-  if (hours < 10) {
+let timing = document.querySelector(".time");
+let now = new Date();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+if (hours < 10) {
   hours = `0${hours}`;
-  }
-  if (minutes < 10) {
+}
+if (minutes < 10) {
   minutes = `0${minutes}`;
-  }
-  timing.innerHTML = ` ${hours}:${minutes} `;
+}
+timing.innerHTML = ` ${hours}:${minutes} `;
 
-  let days = [
+let days = [
   "SUNDAY",
   "MONDAY",
   "TUESDAY",
@@ -32,11 +31,11 @@ function App() {
   "THURSDAY",
   "FRIDAY",
   "SATURDAY"
-  ];
-  let day = days[now.getDay()];
+];
+let day = days[now.getDay()];
 
-  let today = document.querySelector(".today");
-  today.innerHTML = `${day}`;
+let today = document.querySelector(".today");
+today.innerHTML = `${day}`;
 
  let form = (
     <form onSubmit={handleQuery}>
@@ -64,7 +63,6 @@ function App() {
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
   }
-
 return (
 <div className="App">
     <div className="container">
@@ -108,5 +106,4 @@ return (
 </div>
   );
 }
-
 export default App;
